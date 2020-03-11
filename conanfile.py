@@ -13,16 +13,18 @@ class BnfcConan(ConanFile):
     options = {"shared": [True, False]}
     default_options = {"shared": False}
     generators = "cmake"
-
-    def source(self):
-        self.run("git clone https://github.com/BNFC/bnfc")
+    scm = {
+         "type": "git",
+         "subfolder": "bnfc",
+         "url": "https://github.com/miketsukerman/bnfc",
+         "revision": "throw-runtime-exception"
+    }
 
     def build(self):
         with tools.chdir("bnfc/source"):
             self.run("cabal install --bindir={} --libdir={}".format(os.path.join(self.package_folder, "bin"), os.path.join(self.package_folder, "lib")))
 
     def package(self):
-        self.copy("*.h", dst="include", src="hello")
         self.copy("*.dll", dst="bin", keep_path=False)
         self.copy("*.so", dst="lib", keep_path=False)
         self.copy("*.dylib", dst="lib", keep_path=False)
