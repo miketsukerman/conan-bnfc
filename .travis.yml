@@ -30,7 +30,6 @@ matrix:
       env:
         - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
 
-    TODO: enable after fixing CI build issues
     - os: linux
       dist: bionic
       compiler: gcc
@@ -61,7 +60,6 @@ matrix:
       env:
         - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
 
-    TODO: enable after fixing CI build issues with std optional
     - os: linux
       dist: xenial
       compiler: clang
