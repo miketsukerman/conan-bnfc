@@ -19,4 +19,4 @@ class HelloTestConan(ConanFile):
     def test(self):
         if not tools.cross_building(self.settings):
             os.chdir("bin")
-            subprocess.run(['.%sexample' % os.sep], stdout=subprocess.PIPE,input='1+b', encoding='ascii')
+            subprocess.run(['.%sexample' % os.sep], stdout=subprocess.PIPE,input='1+b',encoding='utf-8')
