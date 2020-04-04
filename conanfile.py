@@ -16,8 +16,8 @@ class BnfcConan(ConanFile):
     scm = {
          "type": "git",
          "subfolder": "bnfc",
-         "url": "https://github.com/miketsukerman/bnfc",
-         "revision": "throw-runtime-exception"
+         "url": "https://github.com/BNFC/bnfc",
+         "revision": "master"
     }
 
     def build(self):

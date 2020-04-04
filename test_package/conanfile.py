@@ -19,4 +19,7 @@ class HelloTestConan(ConanFile):
     def test(self):
         if not tools.cross_building(self.settings):
             os.chdir("bin")
-            subprocess.run(['.%sexample' % os.sep], stdout=subprocess.PIPE,input='1+b',encoding='utf-8')
+            output = subprocess.check_output([".{}example".format(os.sep), "test"])
+            print(output)
+            if not b'Parse Successful!' in output:
+                raise Exception(output)

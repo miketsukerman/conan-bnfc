@@ -3,6 +3,10 @@ project(test_package)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
                       ${CMAKE_CURRENT_SOURCE_DIR}/modules)
 
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 conan_define_targets()
@@ -15,3 +19,5 @@ bnfc_target(FrancaGrammarParserGen ${CMAKE_SOURCE_DIR}/example.cf
 
 add_executable(example ${BNFC_OUTPUT_DIR}/Test.C ${BNFC_FrancaGrammarParserGen_OUTPUT_SOURCES})
 target_include_directories(example PUBLIC  $<BUILD_INTERFACE:${BNFC_OUTPUT_DIR}>)
+
+file(WRITE ${CMAKE_BINARY_DIR}/bin/test "2+2")
