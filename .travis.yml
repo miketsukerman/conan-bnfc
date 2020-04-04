@@ -1,3 +1,11 @@
+env:
+   global:
+     - CONAN_REFERENCE: "bnfc/2.8.3"
+     - CONAN_USERNAME: "miketsukerman"
+     - CONAN_LOGIN_USERNAME: "miketsukerman"
+     - CONAN_CHANNEL: "testing"
+     - CONAN_UPLOAD: "https://api.bintray.com/conan/miketsukerman/fpp"
+
 language: cpp
 jobs:
   include:
@@ -181,7 +189,8 @@ install:
   - cabal update
   - cabal install doctest alex happy
   - sudo pip3 install conan
-  - sudo pip3 install sphinx breathe recommonmark
+  - sudo pip3 install conan_package_tools
+  - conan user
   - conan remote add bintray-conan https://api.bintray.com/conan/bincrafters/public-conan
 
 before_script:
@@ -189,3 +198,7 @@ before_script:
 
 script:
   - conan create ${CONAN_OPTS} --build=missing .
+
+after_success:
+  - conan remote add miketsukerman-bintray https://api.bintray.com/conan/miketsukerman/fpp 
+  - conan upload "bnfc" -`r miketsukerman-bintray --all -c
