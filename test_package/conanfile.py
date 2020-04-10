@@ -5,6 +5,7 @@ class HelloTestConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     generators = "cmake", "virtualrunenv"
     requires =   "bison/3.3.2@bincrafters/stable", "flex/2.6.4@bincrafters/stable"
+    build_requires = "bnfc/2.8.3@haskell/testing"
 
     def build(self):
         cmake = CMake(self)

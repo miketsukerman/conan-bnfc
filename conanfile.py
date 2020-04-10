@@ -5,6 +5,8 @@ class BnfcConan(ConanFile):
     name = "bnfc"
     version = "2.8.3"
     license = "GPL"
+    requires = "semigroups/0.19.1@haskell/testing"
+    build_requires = "ghc/8.10.1@haskell/testing"
     author = "Michael Tsukerman <miketsukerman@gmail.com>"
     url = "https://github.com/miketsukerman/conan-bnfc"
     description = "Compiler front-end generator based on Labelled BNF"
