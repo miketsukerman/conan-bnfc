@@ -185,13 +185,12 @@ before_install:
   - python3 --version
 
 install:
-  - sudo apt-get -y install cabal-install git python3-pip python3-setuptools
-  - cabal update
-  - cabal install doctest alex happy
+  - sudo apt-get -y install git python3-pip python3-setuptools
   - sudo pip3 install conan
   - sudo pip3 install conan_package_tools
   - conan user
   - conan remote add bintray-conan https://api.bintray.com/conan/bincrafters/public-conan
+  - conan remote add bintray-conan-personal https://api.bintray.com/conan/miketsukerman/fpp  
 
 before_script:
   - cd ${TRAVIS_BUILD_DIR}
@@ -200,5 +199,4 @@ script:
   - conan create ${CONAN_OPTS} --build=missing .
 
 after_success:
-  - conan remote add miketsukerman-bintray https://api.bintray.com/conan/miketsukerman/fpp 
-  - conan upload "bnfc" -`r miketsukerman-bintray --all -c
+  - conan upload "bnfc" -`r bintray-conan-personal --all -c
