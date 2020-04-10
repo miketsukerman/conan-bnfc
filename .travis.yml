@@ -185,7 +185,7 @@ before_install:
   - python3 --version
 
 install:
-  - sudo apt-get -y install git python3-pip python3-setuptools
+  - sudo apt-get -y install alex happy git python3-pip python3-setuptools
   - sudo pip3 install conan
   - sudo pip3 install conan_package_tools
   - conan user
