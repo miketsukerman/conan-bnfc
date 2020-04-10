@@ -22,7 +22,10 @@ class BnfcConan(ConanFile):
 
     def build(self):
         with tools.chdir("bnfc/source"):
-            self.run("cabal install --bindir={} --libdir={}".format(os.path.join(self.package_folder, "bin"), os.path.join(self.package_folder, "lib")))
+            self.run("ghc -threaded --make Setup", run_environment=True)
+            self.run(".{}Setup configure --user --prefix={}".format(os.sep,self.package_folder), run_environment=True)
+            self.run(".{}Setup build".format(os.sep), run_environment=True)
+            self.run(".{}Setup install".format(os.sep), run_environment=True)
 
     def package(self):
         self.copy("*.dll", dst="bin", keep_path=False)
